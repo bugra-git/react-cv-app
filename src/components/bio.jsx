@@ -24,9 +24,10 @@ function Bio() {
 
   return (
     <section className="bio">
-      <form onSubmit={handleSubmit}>
-        <img src={bio.picture} alt="Profile picture" />
-        {editing && (
+      <img src={bio.picture} alt="Profile" />
+
+      {editing ? (
+        <form onSubmit={handleSubmit}>
           <input
             type="file"
             accept="image/*"
@@ -37,9 +38,7 @@ function Bio() {
               })
             }
           />
-        )}
-        <label htmlFor="name">Name:</label>
-        {editing ? (
+          <label htmlFor="name">Name:</label>
           <input
             type="text"
             id="name"
@@ -48,11 +47,7 @@ function Bio() {
             onChange={(e) => setBio({ ...bio, name: e.target.value })}
             required
           />
-        ) : (
-          <p>{bio.name}</p>
-        )}
-        <label htmlFor="tel">Phone:</label>
-        {editing ? (
+          <label htmlFor="tel">Phone:</label>
           <input
             type="tel"
             id="tel"
@@ -62,11 +57,7 @@ function Bio() {
             required
             pattern="^\d{10}$"
           />
-        ) : (
-          <p>{bio.tel}</p>
-        )}
-        <label htmlFor="email">Email:</label>
-        {editing ? (
+          <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
@@ -75,11 +66,7 @@ function Bio() {
             onChange={(e) => setBio({ ...bio, email: e.target.value })}
             required
           />
-        ) : (
-          <p>{bio.email}</p>
-        )}
-        <label htmlFor="about">About Me:</label>
-        {editing ? (
+          <label htmlFor="about">About Me:</label>
           <textarea
             id="about"
             placeholder="Write a short bio about yourself"
@@ -87,19 +74,57 @@ function Bio() {
             onChange={(e) => setBio({ ...bio, about: e.target.value })}
             required
           />
-        ) : (
-          <p>{bio.about}</p>
-        )}
-        {editing ? (
-          <button type="submit">
-            Save
-          </button>
-        ) : (
+          <button type="submit">Save Bio</button>
+        </form>
+      ) : (
+        <div className="bio-display">
+          <h2>{bio.name}</h2>
+          <div className="contact-info">
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-phone-icon lucide-phone"
+              >
+                <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
+              </svg>
+              {bio.tel}
+            </span>
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-mail-icon lucide-mail"
+              >
+                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+              </svg>
+              {bio.email}
+            </span>
+          </div>
+          <article>
+            <h3>About Me</h3>
+            <p className="about-text">{bio.about}</p>
+          </article>
           <button type="button" onClick={handleEdit}>
-            Edit
+            Edit Profile
           </button>
-        )}
-      </form>
+        </div>
+      )}
     </section>
   );
 }

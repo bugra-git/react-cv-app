@@ -33,110 +33,99 @@ function Experience({ type }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">{config.nameLabel}:</label>
+    <div className="experience-container">
       {editing ? (
-        <input
-          type="text"
-          id="name"
-          value={experience.name}
-          onChange={(e) =>
-            setExperience({ ...experience, name: e.target.value })
-          }
-          required
-        />
-      ) : (
-        <p>{experience.name}</p>
-      )}
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="name">{config.nameLabel}:</label>
+          <input
+            type="text"
+            id="name"
+            value={experience.name}
+            onChange={(e) =>
+              setExperience({ ...experience, name: e.target.value })
+            }
+            required
+          />
 
-      <label htmlFor="title">{config.titleLabel}:</label>
-      {editing ? (
-        <input
-          type="text"
-          id="title"
-          value={experience.title}
-          onChange={(e) =>
-            setExperience({ ...experience, title: e.target.value })
-          }
-          required
-        />
-      ) : (
-        <p>{experience.title}</p>
-      )}
+          <label htmlFor="title">{config.titleLabel}:</label>
+          <input
+            type="text"
+            id="title"
+            value={experience.title}
+            onChange={(e) =>
+              setExperience({ ...experience, title: e.target.value })
+            }
+            required
+          />
 
-      <label htmlFor="startDate">Start Date:</label>
-      {editing ? (
-        <input
-          type="month"
-          id="startDate"
-          value={experience.startDate}
-          onChange={(e) =>
-            setExperience({ ...experience, startDate: e.target.value })
-          }
-          required
-        />
-      ) : (
-        <p>{formatDisplayDate(experience.startDate)}</p>
-      )}
+          <label htmlFor="startDate">Start Date:</label>
+          <input
+            type="month"
+            id="startDate"
+            value={experience.startDate}
+            onChange={(e) =>
+              setExperience({ ...experience, startDate: e.target.value })
+            }
+            required
+          />
 
-      <label htmlFor="endDate">End Date:</label>
-      {editing ? (
-        <input
-          type="month"
-          id="endDate"
-          value={experience.endDate}
-          onChange={(e) =>
-            setExperience({ ...experience, endDate: e.target.value })
-          }
-          required
-        />
-      ) : (
-        <p>{formatDisplayDate(experience.endDate)}</p>
-      )}
+          <label htmlFor="endDate">End Date:</label>
+          <input
+            type="month"
+            id="endDate"
+            value={experience.endDate}
+            onChange={(e) =>
+              setExperience({ ...experience, endDate: e.target.value })
+            }
+            required
+          />
 
-      {editing ? (
-        <button type="submit">
-          Save
-        </button>
+          <button type="submit">Save</button>
+        </form>
       ) : (
-        <button
-          type="button"
-          onClick={handleEdit}
-        >
-          Edit
-        </button>
+        <div className="experience-display">
+          <h3>{experience.title}</h3>
+          <h4>{experience.name}</h4>
+          <p>
+            {formatDisplayDate(experience.startDate)} -{" "}
+            {formatDisplayDate(experience.endDate)}
+          </p>
+          <button type="button" onClick={handleEdit}>
+            Edit
+          </button>
+        </div>
       )}
-    </form>
+    </div>
   );
 }
 
 function ExperienceList({ title, type }) {
-    const [items, setItems] = useState([]);
+  const [items, setItems] = useState([]);
 
-    const addItem = () => {
-        setItems([...items, { id: crypto.randomUUID() }]);
-    };
+  const addItem = () => {
+    setItems([...items, { id: crypto.randomUUID() }]);
+  };
 
-    const removeItem = (id) => {
-        setItems(items.filter(item => item.id !== id));
-    };
+  const removeItem = (id) => {
+    setItems(items.filter((item) => item.id !== id));
+  };
 
-    return (
-        <section>
-            <h2>{title}</h2>
-            <button onClick={addItem}>Add {title}</button>
-            <ul>
-                {items.map((item) => (
-                    <li key={item.id}>
-                        <Experience type={type} />
-                        <button type="button" onClick={() => removeItem(item.id)}>
-                            Delete
-                        </button>
-                    </li>
-                ))}
-            </ul>
-        </section>
-    );
+  return (
+    <section>
+      <h2>{title}</h2>
+      <button onClick={addItem}>Add {title}</button>
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            <Experience type={type} />
+            <button type="button" onClick={() => removeItem(item.id)}>
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
 }
 
 export default ExperienceList;
