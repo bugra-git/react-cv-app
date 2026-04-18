@@ -24,7 +24,7 @@ function Bio() {
 
   return (
     <section className="bio">
-      <form>
+      <form onSubmit={handleSubmit}>
         <img src={bio.picture} alt="Profile picture" />
         {editing && (
           <input
@@ -91,7 +91,7 @@ function Bio() {
           <p>{bio.about}</p>
         )}
         {editing ? (
-          <button type="submit" onClick={handleSubmit}>
+          <button type="submit">
             Save
           </button>
         ) : (
