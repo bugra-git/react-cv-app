@@ -109,3 +109,34 @@ function Experience({ type }) {
     </form>
   );
 }
+
+function ExperienceList({ title, type }) {
+    const [items, setItems] = useState([]);
+
+    const addItem = () => {
+        setItems([...items, { id: crypto.randomUUID() }]);
+    };
+
+    const removeItem = (id) => {
+        setItems(items.filter(item => item.id !== id));
+    };
+
+    return (
+        <section>
+            <h2>{title}</h2>
+            <button onClick={addItem}>Add {title}</button>
+            <ul>
+                {items.map((item) => (
+                    <li key={item.id}>
+                        <Experience type={type} />
+                        <button type="button" onClick={() => removeItem(item.id)}>
+                            Delete
+                        </button>
+                    </li>
+                ))}
+            </ul>
+        </section>
+    );
+}
+
+export default ExperienceList;
