@@ -24,6 +24,10 @@ function Experience({ type }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (experience.endDate && experience.endDate < experience.startDate) {
+      alert("End date cannot be before start date!");
+      return;
+    }
     setEditing(false);
   };
 
@@ -114,16 +118,20 @@ function ExperienceList({ title, type }) {
     <section>
       <h2>{title}</h2>
       <button onClick={addItem}>Add {title}</button>
-      <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            <Experience type={type} />
-            <button type="button" onClick={() => removeItem(item.id)}>
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+      {items.length === 0 ? (
+        <p>No {title.toLowerCase()} added yet.</p>
+      ) : (
+        <ul>
+          {items.map((item) => (
+            <li key={item.id}>
+              <Experience type={type} />
+              <button type="button" onClick={() => removeItem(item.id)}>
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }
