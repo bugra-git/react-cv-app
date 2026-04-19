@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/resume.css";
 
 function Experience({ type }) {
   const [experience, setExperience] = useState({
@@ -40,60 +41,60 @@ function Experience({ type }) {
     <div className="experience-container">
       {editing ? (
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name">{config.nameLabel}:</label>
-          <input
-            type="text"
-            id="name"
-            value={experience.name}
-            onChange={(e) =>
-              setExperience({ ...experience, name: e.target.value })
-            }
-            required
-          />
-
-          <label htmlFor="title">{config.titleLabel}:</label>
-          <input
-            type="text"
-            id="title"
-            value={experience.title}
-            onChange={(e) =>
-              setExperience({ ...experience, title: e.target.value })
-            }
-            required
-          />
-
-          <label htmlFor="startDate">Start Date:</label>
-          <input
-            type="month"
-            id="startDate"
-            value={experience.startDate}
-            onChange={(e) =>
-              setExperience({ ...experience, startDate: e.target.value })
-            }
-            required
-          />
-
-          <label htmlFor="endDate">End Date:</label>
-          <input
-            type="month"
-            id="endDate"
-            value={experience.endDate}
-            onChange={(e) =>
-              setExperience({ ...experience, endDate: e.target.value })
-            }
-            required
-          />
-
+          <div className="labelInput">
+              <label htmlFor="name">{config.nameLabel}:</label>
+              <input
+                type="text"
+                id="name"
+                value={experience.name}
+                onChange={(e) =>
+                  setExperience({ ...experience, name: e.target.value })
+                }
+                required
+              />
+              <label htmlFor="title">{config.titleLabel}:</label>
+              <input
+                type="text"
+                id="title"
+                value={experience.title}
+                onChange={(e) =>
+                  setExperience({ ...experience, title: e.target.value })
+                }
+                required
+              />
+              <label htmlFor="startDate">Start Date:</label>
+              <input
+                type="month"
+                id="startDate"
+                value={experience.startDate}
+                onChange={(e) =>
+                  setExperience({ ...experience, startDate: e.target.value })
+                }
+                required
+              />
+              <label htmlFor="endDate">End Date:</label>
+              <input
+                type="month"
+                id="endDate"
+                value={experience.endDate}
+                onChange={(e) =>
+                  setExperience({ ...experience, endDate: e.target.value })
+                }
+                required
+              />
+          </div>
           <button type="submit">Save</button>
         </form>
       ) : (
         <div className="experience-display">
-          <h3>{experience.title}</h3>
-          <h4>{experience.name}</h4>
-          <p>
-            {formatDisplayDate(experience.startDate)} -{" "}
-            {formatDisplayDate(experience.endDate)}
-          </p>
+          <article className="displayInfo">
+              <h3>{experience.title}</h3>
+              <h4>{experience.name}</h4>
+              <p>
+                {formatDisplayDate(experience.startDate)} -{" "}
+                {formatDisplayDate(experience.endDate)}
+              </p>
+          </article>
           <button type="button" onClick={handleEdit}>
             Edit
           </button>
@@ -115,20 +116,24 @@ function ExperienceList({ title, type }) {
   };
 
   return (
-    <section>
-      <h2>{title}</h2>
-      <button onClick={addItem}>Add {title}</button>
+    <section className="expList">
+      <div>
+          <h2>{title}</h2>
+          <button onClick={addItem}>Add {title}</button>
+      </div>
       {items.length === 0 ? (
         <p>No {title.toLowerCase()} added yet.</p>
       ) : (
         <ul>
           {items.map((item) => (
-            <li key={item.id}>
-              <Experience type={type} />
-              <button type="button" onClick={() => removeItem(item.id)}>
-                Delete
-              </button>
-            </li>
+            <div key={item.id} className="expListItem">
+                <li>
+                  <Experience type={type} />
+                </li>
+                <button type="button" onClick={() => removeItem(item.id)}>
+                    Delete
+                </button>
+            </div>
           ))}
         </ul>
       )}
