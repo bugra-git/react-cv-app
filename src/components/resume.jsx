@@ -121,7 +121,7 @@ function ExperienceList({ title, type, resumeEditing }) {
     <section className="expList">
       <div>
         <h2>{title}</h2>
-        {resumeEditing && <button onClick={addItem}>Add</button>}
+        {resumeEditing && <button type="button" onClick={addItem}>Add</button>}
       </div>
       {items.length === 0 ? (
         <p>No {title.toLowerCase()} added yet.</p>
@@ -152,7 +152,7 @@ function Resume() {
     <div className="resume">
       <div>
         <h1>Resume</h1>
-        <button onClick={() => setEditing(!editing)}>
+        <button type="button" onClick={() => setEditing(!editing)}>
           {editing ? "Save" : "Edit"}
         </button>
       </div>
