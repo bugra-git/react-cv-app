@@ -29,54 +29,58 @@ function Bio() {
 
       {editing ? (
         <form onSubmit={handleSubmit}>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) =>
-              setBio({
-                ...bio,
-                picture: URL.createObjectURL(e.target.files[0]),
-              })
-            }
-          />
+          <div className="imgField">
+            <label htmlFor="picture">Update Photo</label>
+            <input
+              type="file"
+              id="picture"
+              accept="image/*"
+              onChange={(e) =>
+                setBio({
+                  ...bio,
+                  picture: URL.createObjectURL(e.target.files[0]),
+                })
+              }
+            />
+          </div>
           <div className="bio-fields">
-              <label htmlFor="name">Name:</label>
-              <input
-                type="text"
-                id="name"
-                placeholder="Enter name"
-                value={bio.name}
-                onChange={(e) => setBio({ ...bio, name: e.target.value })}
-                required
-              />
-              <label htmlFor="tel">Phone:</label>
-              <input
-                type="tel"
-                id="tel"
-                placeholder="Enter phone number"
-                value={bio.tel}
-                onChange={(e) => setBio({ ...bio, tel: e.target.value })}
-                required
-                pattern="^\d{10}$"
-              />
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                id="email"
-                placeholder="Enter email"
-                value={bio.email}
-                onChange={(e) => setBio({ ...bio, email: e.target.value })}
-                required
-              />
-              <label htmlFor="about">About Me:</label>
-              <textarea
-                id="about"
-                placeholder="Write a short bio about yourself"
-                value={bio.about}
-                onChange={(e) => setBio({ ...bio, about: e.target.value })}
-                required
-                rows="5"
-              />
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter name"
+              value={bio.name}
+              onChange={(e) => setBio({ ...bio, name: e.target.value })}
+              required
+            />
+            <label htmlFor="tel">Phone:</label>
+            <input
+              type="tel"
+              id="tel"
+              placeholder="Enter phone number"
+              value={bio.tel}
+              onChange={(e) => setBio({ ...bio, tel: e.target.value })}
+              required
+              pattern="^\d{10}$"
+            />
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter email"
+              value={bio.email}
+              onChange={(e) => setBio({ ...bio, email: e.target.value })}
+              required
+            />
+            <label htmlFor="about">About Me:</label>
+            <textarea
+              id="about"
+              placeholder="Write a short bio about yourself"
+              value={bio.about}
+              onChange={(e) => setBio({ ...bio, about: e.target.value })}
+              required
+              rows="5"
+            />
           </div>
           <button type="submit">Save Bio</button>
         </form>
