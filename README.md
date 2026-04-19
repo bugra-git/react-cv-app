@@ -1,16 +1,43 @@
-# React + Vite
+# CV Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based resume builder application built as part of The Odin Project's JavaScript/React curriculum. This project allows users to input personal details, educational background, and work history to generate a professional CV in real-time.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Personal Bio Section**: Upload a profile picture and add contact information (Name, Email, Phone) and a personal "About Me" summary.
+- **Dynamic Work Experience**: Add multiple job entries with company names, positions, and dates.
+- **Education Tracking**: Add multiple educational milestones including school name and degree.
+- **Edit/Save States**: Every section features a toggleable edit mode. Users can submit information to see a formatted preview or go back into edit mode to update existing details without losing progress.
+- **Responsive Design**: A clean, modern split-layout design (Bio sidebar and Resume main view) that works across different screen sizes.
 
-## React Compiler
+## 🛠️ Built With
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React.js**: Functional components and Hooks (`useState`).
+- **CSS3**: Custom styling with CSS Variables and Grid/Flexbox layouts.
+- **Vite**: Frontend tooling for a fast development experience.
+- **Lucide React**: For clean, modern iconography in the contact section.
 
-## Expanding the ESLint configuration
+## 📁 Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+src/
+├── assets/             # Static assets like default profile images
+├── components/         # React components
+│   ├── app.jsx         # Main application container
+│   ├── bio.jsx         # Bio and contact info logic
+│   └── resume.jsx      # Work & Education list logic
+├── styles/             # Modular CSS files
+│   ├── app.css
+│   ├── bio.css
+│   ├── main.css        # Global resets and variables
+│   └── resume.css
+└── main.jsx            # Entry point
+
+## 📝 Assignment Requirements Fulfilled
+
+- Functional components used throughout.
+- Implementation of "General Information", "Education", and "Practical Experience" sections.
+- Edit and Submit buttons for every section.
+- Input fields pre-populate with existing data when entering edit mode.
+- State management handled via React useState.
+
+Created as part of The Odin Project curriculum.
